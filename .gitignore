@@ -139,3 +139,5 @@ Validation/
 *.npy
 *.pth
 *.zip
+
+data*

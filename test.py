@@ -5,7 +5,7 @@ from torch.optim import Adam
 from torch.utils.data import DataLoader, random_split, Subset
 import numpy as np
 import matplotlib.pyplot as plt
-
+import os
 from experiment import Experiment
 from get_dataset import MoireDataset
 from modules.mCNN import mCNN
@@ -48,9 +48,10 @@ if __name__ == '__main__':
                 ), hl[j].cpu().numpy(), hh[j].cpu().numpy())), 'haar')
                 image = image.reshape(1024, -1)
                 if a[j] != b[j]:
-                    save_path = './data/wrong_detection/' + 'true:' + \
-                        label_names[a[j]] + '_' + 'pred:' + \
-                        label_names[b[j]] + '_' + str(count) + '.png'
+                    
+                    save_path = os.path.join(".", 'wrong_detection', 'true_' + \
+                        label_names[a[j]] + '_' + 'pred_' + \
+                        label_names[b[j]] + '_' + str(count) + '.png')
                     count += 1
                     plt.imsave(save_path, image, cmap='gray')
             
